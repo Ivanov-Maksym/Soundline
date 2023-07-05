@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+	{% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+	<link rel="stylesheet" href="{% static 'User_pages/css/register.css' %}">
+</head>
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<a href="" class="header__logo">
+				<img src="{% static 'User_pages/images/logo.png' %}" alt="logo">
+			</a>
+		</header>
+		<main class="main">
+			<div class="main__container">
+				<form class="main__form form-main" method="POST">
+					{% csrf_token %}
+					<div class="form-main__title">Registration</div>
+					<input autocomplete="off" maxlength="20" type="text" placeholder="Name" class="form-main__input" name="username">
+					<input autocomplete="off" type="email" placeholder="E-mail" class="form-main__input" name="email">
+					<input autocomplete="off" type="password" placeholder="Password" class="form-main__input" name="password">
+					<input autocomplete="off" type="password" placeholder="Repeat password" class="form-main__input" name="repeat_password">
+					<button type="submit" class="form-main__button">Register</button>
+					<a href="{% url 'auth' %}" class="form-main__link">Have already registered? Log-in</a>
+				</form>
+				<div class="main__error-text">
+					{{ error_text }}
+				</div>
+			</div>
+		</main>
+	</div>
+</body>
+</html>

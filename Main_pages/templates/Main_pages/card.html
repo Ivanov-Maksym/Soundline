@@ -1,0 +1,16 @@
+<div class="card music hidden">
+    <a href="#" class="card__image">
+        <img class="musicImage music-image" src="{{ image }}" alt="music-preview">
+    </a>
+    <div class="card__body">
+        <div class="card__info">
+            <a href="#" class="card__name music-title">{{ name }}</a>
+            <a href="#" class="card__author music-author">{{ author }}</a>
+        </div>
+        <div class="card__button save-button _icon-play playing"></div>
+        <audio class="audio" hidden>
+            <source src="{{ file }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+</div>

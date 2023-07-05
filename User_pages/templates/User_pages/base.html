@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+	{% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+	<link rel="stylesheet" href="{% static 'User_pages/css/base.css' %}">
+	<link rel="stylesheet" href="{% static 'Main_pages/css/iconfont.css' %}">
+	<link rel="shortcut icon" type="image/png" href="{% static 'User_pages/images/logo-mobile.png' %}">
+	<script src="{% static 'Main_pages/js/ajax/jquery-3.6.4.js' %}" defer></script>
+	<script src="{% static 'Main_pages/js/ajax/saveDataOfSong.js' %}" defer></script>
+	{% block links %}
+	{% endblock %}
+	<link rel="stylesheet" href="{% static 'Main_pages/css/controls.css' %}">
+	<script src="{% static 'User_pages/js/burgerMenu.js' %}" defer></script>
+	<link rel="stylesheet" href="{% static 'User_pages/css/display.css' %}">
+</head>
+<body>
+	{% csrf_token %}
+	<input id="searchRequestURL" value="{% url 'search' %}" type="text" hidden>
+	<input id="saveDataOfSong" type="text" value="{% url 'save_data_of_music' %}" hidden>
+	<div class="wrapper">
+		<aside class="aside">
+			<div class="aside__container">
+				<div class="aside__body">
+					<div class="aside__menu menu">
+						<a href="{% url 'main' %}" class="aside__logo"></a>
+						<button class="aside__fake-button _icon-search"></button>
+						<form action="{% url 'search' %}" method="GET" class="aside__form">
+							<button type="submit" class="aside__button _icon-search"></button>
+							<input autocomplete="off" type="text" placeholder="search..." name="q" class="aside__search">
+						</form>
+						<button type="button" class="menu__icon icon-menu"><span></span></button>
+						<nav class="menu__body">
+							<ul class="menu__list">
+								<li class="menu__item">
+									<a href="{% url 'main' %}" class="menu__link">
+										<img src="{% static 'User_pages/images/main.png' %}" alt="icon">
+										<span>Main</span>
+									</a>
+								</li>
+								<li class="menu__item">
+									<a href="{% url 'profile' %}" class="menu__link">
+										<img src="{% static 'User_pages/images/user.png' %}" alt="icon">
+										<span>Profile</span>
+									</a>
+								</li>
+								<li class="menu__item">
+									<a href="{% url 'favorite' %}" class="menu__link">
+										<img src="{% static 'User_pages/images/favorite.png' %}" alt="icon">
+										<span>Favorite</span>
+									</a>
+								</li>
+								<li class="menu__item">
+									<a href="{% url 'playlist' %}" class="menu__link">
+										<img src="{% static 'User_pages/images/playlist.png' %}" alt="icon">
+										<span>Play list`s</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</aside>
+		{% block content %}
+
+		{% endblock %}
+		{% include 'Main_pages/controls.html' %}
+	</div>
+	<div class="search-cover"></div>
+</body>
+</html>

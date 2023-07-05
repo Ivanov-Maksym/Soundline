@@ -1,0 +1,35 @@
+{% extends "User_pages/base.html" %}
+
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'User_pages/css/settings.css' %}">
+<script type="module" src="{% static 'Main_pages/js/main.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<main class="main">
+    <div class="box">
+        <h1 class="main__title">Profile</h1>
+        <form enctype="multipart/form-data" action="" method="POST" class="form">
+            {% csrf_token %}
+            <div class="box_element">
+                <div class="photoAndfile">
+                    <div class="img_element"><img src="{% static 'User_pages/images/add_photo.png' %}" alt="photo"> </div>
+                    <input type="file" name="image">
+                </div>
+            </div>
+            <div class="box_element">
+                <div class="input_element">
+                    <input type="text" placeholder="User name" name="name" class="input">
+                </div>
+                <textarea cols="30" rows="10" maxlength="65" placeholder="Bio" name="bio" class="textarea"></textarea>
+                <button class="button"> Save </button>
+            </div>
+        </form>
+        <div class="main__error-text">
+            {{ error_text }}
+        </div>
+    </div>
+</main>
+{% include 'Main_pages/card.html' %}
+{% endblock %}

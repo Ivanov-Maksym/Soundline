@@ -1,0 +1,27 @@
+{% extends "User_pages/base.html" %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'Main_pages/css/form_buy.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="main" >
+        <div class="box">
+            <h1>Buy license</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="box_element">
+                    <div class="input_element">
+                        <input type="text" placeholder="number of card" name="number_of_card" class="input">
+                    </div>
+                    <button class="button"> Buy </button>
+                </div>
+            </form>
+            <div class="buy__error-text">
+                {{ error_text }}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

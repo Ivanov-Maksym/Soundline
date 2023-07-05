@@ -1,0 +1,275 @@
+.main {
+	padding: 20px 30px 120px 30px;
+	height: auto;
+	background: #E4E4E4;
+}
+
+.main__profile {}
+
+.profile {}
+
+.profile__container {}
+
+
+.profile__header {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	gap: 30px;
+	width: 100%;
+	margin: 0px 0px 30px 0px;
+	background: linear-gradient(90.13deg, #555555 0.11%, rgba(85, 85, 85, 0.42) 119.2%);
+	border-radius: 10px;
+}
+
+.profile__image img {
+	width: 110px;
+	height: 110px;
+	border-radius: 50%;
+}
+
+.card__delete-form {
+	display: block;
+	width: 100%;
+}
+
+.card__delete {
+	background-color: #FF9898;
+	padding: 5px 0px;
+	color: #fff;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.profile__info {
+	flex: 1 1 100%;
+}
+
+.profile__username {
+	font-weight: 500;
+	font-size: 30px;
+	line-height: 36px;
+
+	color: #FFFFFF;
+	margin: 0px 0px 10px 0px;
+}
+
+.profile__link img {
+	width: 25px;
+	height: 25px;
+}
+
+.profile__body {}
+
+.profile__link {
+	display: inline-flex;
+	gap: 30px;
+	flex-direction: row-reverse;
+	align-items: center;
+	font-size: 33px;
+}
+
+.profile__link span {
+	font-weight: 400;
+	font-size: 28px;
+	line-height: 31px;
+}
+
+.main__musics {}
+
+.musics {}
+
+.musics__block {}
+
+.musics__container {
+	position: relative;
+}
+
+.musics__block:not(:last-child) {
+	margin: 0px 0px 20px 0px;
+}
+
+.musics__title {
+	background: linear-gradient(293.41deg, #323232 -11.71%, #4D4D4D 92.87%);
+	border-radius: 5px;
+	width: 100%;
+	padding: 8px 10px;
+	font-weight: 400;
+	font-size: 26px;
+	line-height: 29px;
+	color: #FF9898;
+	margin: 0px 0px 20px 0px;
+}
+
+.musics__cards-slider {
+	overflow: hidden;
+	position: relative;
+}
+
+.musics__card {}
+
+.card {
+	background: linear-gradient(293.41deg, #323232 -11.71%, #4D4D4D 92.87%);
+	border: 1px solid #FF9898;
+	border-radius: 5px;
+	padding: 10px;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-width: 230px;
+}
+
+.card__image {
+	display: block;
+	text-align: center;
+	border-radius: 5px;
+	margin: 0px 0px 14px 0px;
+}
+
+.card__image img {
+	border-radius: 5px;
+	width: 180px;
+	height: 172px;
+}
+
+.card__body {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 32px;
+	margin: 0px 0px 8px 0px;
+}
+
+.card__info {}
+
+.card__name {
+	display: block;
+	margin: 0px 0px 10px 0px;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 20px;
+	color: #fff;
+}
+
+.card__author {
+	display: block;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+	color: #fff;
+}
+
+.card__button {
+	background: #FFE5E5;
+	height: 45px;
+	width: 45px;
+	border-radius: 50%;
+	color: #008000;
+	font-size: 22px;
+	display: flex;
+	justify-self: flex-end;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.music__prev-slide,
+.music__next-slide {
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	width: 45px;
+	height: 45px;
+	background: #99C5FF;
+	border-radius: 50%;
+	font-size: 16px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.2s ease 0s;
+}
+
+.music__prev-slide:hover,
+.music__next-slide:hover {
+	background: #6285b3;
+}
+
+.swiper-button-disabled {
+	opacity: 0.7;
+}
+
+.music__next-slide {
+	right: 0;
+}
+
+.music__prev-slide {
+	left: 0;
+	transform: translate(-50%, -50%);
+}
+
+.right {
+	transform: rotate(180deg) translate(-50%, 50%);
+}
+
+.my_music {
+	margin-top: 30px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 230px);
+	gap: 25px;
+}
+
+.settings__box {
+	justify-self: flex-end;
+}
+
+.profile__settings img {
+	width: 65px;
+	height: 65px;
+}
+
+.profile__bio {
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 22px;
+	color: #fff;
+}
+
+@media (max-width: 928px) {
+	.main {
+		padding: 20px 10px 220px 10px;
+	}
+}
+
+@media (max-width: 700px) {
+	.profile__header{
+		flex-direction: column;
+	}
+	.profile__image img{
+		width: 230px;
+    	height: 230px;
+	}
+	.profile__info{
+		display: flex;
+    	align-items: center;
+    	flex-direction: column;
+	}
+	.profile__link span{
+		font-weight: 400;
+    	font-size: 20px;
+    	line-height: 31px;
+	}
+	._icon-plus{
+		font-size: 25px;
+		gap: 12px;
+	}
+	.profile__bio{
+		text-align: center;
+	}
+	.my_music {
+		justify-content: center;
+	}
+}

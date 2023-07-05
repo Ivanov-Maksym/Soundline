@@ -1,0 +1,62 @@
+{% extends "User_pages/base.html" %}
+
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'Main_pages/css/iconfont.css' %}">
+<link rel="stylesheet" href="{% static 'User_pages/css/profile.css' %}">
+<link rel="stylesheet" href="{% static 'Main_pages/css/controls.css' %}">
+<script type="module" src="{% static 'Main_pages/js/main.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<main class="main">
+    <div class="main__profile profile">
+        <div class="profile__container">
+            <div class="profile__header">
+                <div class="profile__image">
+                    <img src="{{ picture.url }}" alt="picture">
+                </div>
+                <div class="profile__info">
+                    <h1 class="profile__username">
+                        {{ username }}
+                    </h1>
+                    <div class="profile__bio">{{ bio }}</div>
+                </div>
+                <a class="profile__settings" href="{% url 'settings' %}"> 
+                    <img src="{% static 'User_pages/images/settings.png' %}" alt="settings" class="settings">  
+                </a>
+            </div>
+            <div class="profile__body">
+                <a href="{% url 'upload' %}" class="profile__link _icon-plus">
+                    <span>Upload you track</span>
+                </a>
+            </div>
+            <div class="my_music">
+                {% for music in my_sound %}
+                    <div class="musics__card card music">
+                        <a href="{{ music.get_absolute_url }}" class="card__image">
+                            <img class="musicImage music-image" src="{{ music.image.url }}" alt="music-preview">
+                        </a>
+                        <div class="card__body">
+                            <div class="card__info">
+                                <a href="" class="card__name music-title">{{ music.name|truncatechars:11 }}</a>
+                                <a href="" class="card__author music-author">{{ music.author|truncatechars:11 }}</a>
+                            </div>
+                            <div class="card__button save-button _icon-play"></div>
+                            <audio class="audio" hidden>
+                                <source src="/clips/{{ music.id }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <form class="card__delete-form" action="" method="POST">
+                            {% csrf_token %}
+                            <button value="{{music.pk}}" class="card__delete" name="q" >Del</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+{% include 'Main_pages/card.html' %}
+{% endblock %}

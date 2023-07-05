@@ -1,0 +1,38 @@
+{% extends "User_pages/base.html" %}
+
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'User_pages/css/search.css' %}">
+<link rel="stylesheet" href="{% static 'Main_pages/css/controls.css' %}">
+<script type="module" src="{% static 'Main_pages/js/main.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<main class="main">
+	<div class="main__container">
+		<h1 class="main__title">Search results ({{results_amount}})</h1>
+		<div class="main__musics musics">
+			{% for music in search_response %}
+			<div class="musics__card card music">
+				<a href="{{  music.get_absolute_url }}" class="card__image">
+					<img class="musicImage music-image" src="{{ music.image.url }}" alt="music-preview">
+				</a>
+				<div class="card__body">
+					<div class="card__info">
+						<a href="" class="card__name music-title">{{ music.name|truncatechars:11 }}</a>
+						<a href="" class="card__author music-author">{{ music.author|truncatechars:11 }}</a>
+					</div>
+					<div class="card__button save-button _icon-play"></div>
+					<!-- <audio src="{{ music.file.url }}" hidden></audio> -->
+					<audio class="audio" hidden>
+						<source src="/clips/{{ music.id }}" type="audio/mpeg">
+						Your browser does not support the audio element.
+					</audio>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</main>
+{% include 'Main_pages/card.html' %}
+{% endblock %}

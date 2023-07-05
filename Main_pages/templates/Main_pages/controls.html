@@ -1,0 +1,40 @@
+<div class="controls">
+	<div class="controls__container">
+		<div class="controls__song-info">
+			<div class="controls__image">
+				<img class="controls__picture" src="{{ image }}" alt="image">
+			</div>
+			<div class="controls__info">
+				<div class="controls__title">{{ name }}</div>
+				<div class="controls__author">{{ author }}</div>
+			</div>
+		</div>
+		<div class="controls__body">
+			<div class="controls__progress-block">
+				{% if file %}
+				<button data-audiourl="{{ file }}" data-currenttime="{{ currentTime }}" data-volume="{{ volume }}" class="controls__play save-button _icon-play"></button>
+				{% else %}
+				<button class="controls__play save-button _icon-pause"></button>
+				{% endif %}
+				<div class="controls__timer"><span class="minutes">00</span> : <span class="seconds">00</span></div>
+				<div class="controls__progress-container">
+					<div class="controls__progress"></div>
+				</div>
+			</div>
+			{% if can_click %}
+			<button class="controls__prev-song _icon-prev"></button>
+			<button class="controls__next-song _icon-next"></button>
+			{% else %}
+			<div class="controls__prev-song disabled _icon-prev"></div>
+			<div class="controls__next-song disabled _icon-next"></div>
+			{% endif %}
+			<button class="controls__loop _icon-loop"></button>
+			<div class="controls__volume volume">
+				<button class="volume__icon _icon-volume"></button>
+				<div class="volume__progress-container">
+					<div class="volume__progress"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

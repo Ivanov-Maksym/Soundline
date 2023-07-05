@@ -1,0 +1,47 @@
+{% extends "User_pages/base.html" %}
+
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'User_pages/css/upload_music.css' %}">
+<script src="{% static 'User_pages/js/upload.js' %}" defer></script>
+<script type="module" src="{% static 'Main_pages/js/main.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<main class="main">
+    <div class="box">
+        <form enctype="multipart/form-data" action="" method="POST">
+            {% csrf_token %}
+            <div class="box_element">
+                <div class="photoAndfile">
+                    <div class="img_element"><img class="file" src="{% static 'User_pages/images/add_file.png' %}" alt="file"></div> 
+                    <input data-url="{% static 'User_pages/images/success.png' %}" class="fileInput" type="file" name="file">
+                </div>
+                <div class="photoAndfile">
+                    <div class="img_element"><img class="image" src="{% static 'User_pages/images/add_photo.png' %}" alt="photo"> </div>
+                    <input class="imgInput" type="file" name="image">
+                </div>
+                <div class="input_element">
+                    <input type="text" placeholder="Title" name="title" class="input" value="{{title}}"> 
+                    <select name="category" class="select">
+                        {% for category in categories %}
+                        <option value="{{ category.pk }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="box_element">
+                <textarea cols="30" rows="10" placeholder="Music lyric`s" name="music_lyrics" class="textarea"></textarea>
+                <div class="input_element">
+                    <input type="text" placeholder="Price in $" name="price" class="input" value="{{price}}">
+                    <button class="button"> Upload music </button>
+                </div>
+            </div>
+        </form>
+        <div class="main__error-text">
+            {{ error_text }}
+        </div>
+    </div>
+</main>
+{% include 'Main_pages/card.html' %}
+{% endblock %}

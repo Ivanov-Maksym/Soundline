@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log-in</title>
+    <link rel="stylesheet" href="{% static 'User_pages/css/auth.css' %}">
+</head>
+    <div class="wrapper">
+        <header class="header">
+            <a href="" class="header__logo">
+                <img src="{% static 'User_pages/images/logo.png' %}" alt="logo">
+            </a>
+        </header>
+        <main class="main">
+            <div class="main__container">
+                <form class="main__form form-main" method="POST">
+                    {% csrf_token %}
+                    <div class="form-main__title">Log-in</div>
+                    <input autocomplete="off" type="text" placeholder="Username" class="form-main__input" name="username">
+                    <input autocomplete="off" type="password" placeholder="Password" class="form-main__input" name="password">
+                    <button type="submit" class="form-main__button">Log-in</button>
+                    <a href="{% url 'registration' %}" class="form-main__link">Register if you haven't already</a>
+                </form>
+                <div class="main__error-text">
+                    {{ error_text }}
+                </div>
+            </div>
+        </main>
+    </div>
+</html>

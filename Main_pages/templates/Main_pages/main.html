@@ -1,0 +1,55 @@
+{% extends 'User_pages/base.html' %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'Main_pages/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'Main_pages/css/iconfont.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js" defer></script>
+<script type="module" src="{% static 'Main_pages/js/main.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<main class="main">
+	<div class="main__container">
+		<div class="main__musics musics">
+			{% for category in list_of_musics %}
+			{% if category.list_of_musics %}
+			<div class="musics__block">
+				<div class="musics__title">
+					{{ category.name }}
+				</div>
+				<div class="musics__container">
+					<div class="musics__cards-slider swiper-container">
+						<div class="musics__slider-wrapper swiper-wrapper">
+							{% for music in category.list_of_musics %}
+							<div class="musics__slide swiper-slide">
+								<div class="card music">
+									<a href="{{  music.get_absolute_url }}" class="card__image">
+										<img class="musicImage music-image" src="{{ music.image.url }}" alt="music-preview">
+									</a>
+									<div class="card__body">
+										<div class="card__info">
+											<a href="{{  music.get_absolute_url }}" class="card__name music-title">{{music.name|truncatechars:11 }}</a>
+											<a href="{{  music.get_absolute_url }}" class="card__author music-author">{{music.author|truncatechars:11 }}</a>
+										</div>
+										<div class="card__button save-button _icon-play"></div>
+										<audio class="audio" hidden>
+											<source src="/clips/{{ music.id }}" type="audio/mpeg">
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="music__prev-slide _icon-slider-arrow"></div>
+					<div class="music__next-slide _icon-slider-arrow right"></div>
+				</div>
+			</div>
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</main>
+{% endblock %}

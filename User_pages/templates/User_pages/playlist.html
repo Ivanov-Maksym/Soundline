@@ -1,0 +1,64 @@
+{% extends "User_pages/base.html" %}
+
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'User_pages/css/playlist.css' %}">
+<link rel="stylesheet" href="{% static 'Main_pages/css/controls.css' %}">
+<script src="{% static 'User_pages/js/playlistControls.js' %}" defer></script>
+{% endblock %}
+    
+
+{% block content %}
+    <input value="{% url 'next_music' %}" id="requestUrl" type="text" hidden>
+    <main class="main">
+        <div class="main__container">
+            {% if playlists_len != 0 %}
+            {% for elem in playlists %}
+            <div class="playlist_box">
+                <div class="playlist_name">
+                    <h1>
+                        {{ elem.name }}
+                    </h1>
+                </div>
+                {% for music in elem.sounds.all %}
+                    <div class="main__music music">
+                        <a href="{{music.get_absolute_url}}" class="music__image">
+                            <img class="music-image" src="{{music.image.url}}" alt="">
+                        </a>
+                        <div class="music__info">
+                            <div class="music__titles">
+                                <h1 class="music__title music-title"><a href="{{music.get_absolute_url}}">{{music.name|truncatechars:11}}</a></h1>
+                                <h2 class="music__author music-author"><a href="{{music.get_absolute_url}}">{{music.author|truncatechars:11}}</a></h2>
+                            </div>
+                        </div>
+                        <button class="music__play save-button _icon-play"></button>
+                        <audio data-playlistpk="{{ elem.pk }}" data-pk="{{ music.pk }}" class="_audio">
+                            <source src="/clips/{{ music.id }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            {% else %}
+            <h1>Playlists is empty.</h1>
+            {% endif %}
+        </div>
+    </main>
+    <div class="card music hidden">
+        <a href="#" class="card__image">
+            <img class="musicImage music-image" src="{{ image }}" alt="music-preview">
+        </a>
+        <div class="card__body">
+            <div class="card__info">
+                <a href="#" class="card__name music-title">{{ name }}</a>
+                <a href="#" class="card__author music-author">{{ author }}</a>
+            </div>
+            <div class="card__button save-button _icon-play playing"></div>
+            <audio class="_audio" hidden>
+                <source src="{{ file }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+{% endblock %}

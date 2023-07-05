@@ -1,0 +1,165 @@
+.main {
+	background: #E4E4E4;
+}
+
+.main__container {
+	max-width: 1275px;
+	padding: 30px 20px 120px 20px;
+	margin: 0 auto;
+	min-width: 0;
+}
+
+.main__musics {}
+
+.musics {}
+
+.musics__block {}
+
+.musics__container {
+	position: relative;
+	display: grid;
+}
+
+.musics__block:not(:last-child) {
+	margin: 0px 0px 20px 0px;
+}
+
+.musics__title {
+	background: linear-gradient(293.41deg, #323232 -11.71%, #4D4D4D 92.87%);
+	border-radius: 5px;
+	width: 100%;
+	padding: 8px 10px;
+	font-weight: 400;
+	font-size: 26px;
+	line-height: 29px;
+	color: #FF9898;
+	margin: 0px 0px 20px 0px;
+}
+
+.musics__cards-slider {
+	overflow: hidden;
+}
+
+
+.card {
+	background: linear-gradient(293.41deg, #323232 -11.71%, #4D4D4D 92.87%);
+	border: 1px solid #FF9898;
+	border-radius: 5px;
+	padding: 10px;
+	display: grid;
+	height: 100%;
+	grid-template-columns: 1fr;
+	grid-auto-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.card__image {
+	display: block;
+	text-align: center;
+	border-radius: 5px;
+	margin: 0px 0px 14px 0px;
+}
+
+.card__image img {
+	border-radius: 5px;
+	width: 180px;
+	height: 172px;
+}
+
+.card__body {
+	display: grid;
+	grid-template-columns: auto;
+	grid-auto-flow: column;
+	gap: 32px;
+}
+
+.card__info {}
+
+
+
+.swiper-container {
+	width: 100%;
+	max-width: 100%;
+	max-height: 100vh;
+	min-height: 0;
+	min-width: 0;
+}
+
+.card__name {
+	display: block;
+	margin: 0px 0px 10px 0px;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 20px;
+	color: #fff;
+}
+
+.card__author {
+	display: block;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+	color: #fff;
+}
+
+.card__button {
+	background: #FFE5E5;
+	height: 45px;
+	width: 45px;
+	border-radius: 50%;
+	color: #008000;
+	font-size: 22px;
+	display: flex;
+	justify-self: flex-end;
+	justify-content: center;
+	align-items: center;
+	align-self: flex-end;
+	cursor: pointer;
+}
+
+.music__prev-slide,
+.music__next-slide {
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	width: 45px;
+	height: 45px;
+	background: #99C5FF;
+	border-radius: 50%;
+	font-size: 16px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.2s ease 0s;
+}
+
+.music__prev-slide:hover,
+.music__next-slide:hover {
+	background: #6285b3;
+}
+
+.swiper-button-disabled {
+	opacity: 0.7;
+}
+
+.music__next-slide {
+	right: 0;
+}
+
+.music__prev-slide {
+	left: 0;
+	transform: translate(-50%, -50%);
+}
+
+.right {
+	transform: rotate(180deg) translate(-50%, 50%);
+}
+
+@media (max-width: 928px) {
+	.main__container {
+		padding: 30px 20px 220px 20px;
+	}
+}

@@ -1,0 +1,117 @@
+{% extends "User_pages/base.html" %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'Main_pages/css/music_overview.css' %}">
+<link rel="stylesheet" href="{% static 'Main_pages/css/iconfont.css' %}">
+<link rel="stylesheet" href="{% static 'Main_pages/css/controls.css' %}">
+<script src="{% static 'Main_pages/js/ajax/musicOverviewAjax.js' %}" defer></script>
+<script src="{% static 'Main_pages/js/music-overview.js' %}" defer></script>
+<script src="{% static 'Main_pages/js/musicOverviewControls.js' %}" defer></script>
+<script type="module" src="{% static 'Main_pages/js/main.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<main class="main">
+    <div class="main__music-overview music-overview">
+        <div class="music-overview__container">
+            <div class="music-overview__header">
+                <div class="music-overview__image">
+                    <img src="{{ music.image.url }}" alt="Photo">
+                </div>
+                <div class="music-overview__body">
+                    <div class="music-overview__info">
+                        <div class="music-overview__title">{{music.name}}</div>
+                        <div class="music-overview__author">{{music.author}}</div>
+                    </div>
+                    <div class="music-overview__actions actions">
+                        {% if color %}
+                        <button style="color: {{color}}" class="actions__button {{disabled}} _icon-favorite" value="{{ music.pk }}" name="favorite"></button>
+                        {% else %}
+                        <button class="actions__button {{disabled}} _icon-favorite" value="{{ music.pk }}" name="favorite"></button>
+                        {% endif %}
+                        <button class="actions__button {{disabled}} _icon-plus"></button>
+                        {% if button_blocked %}
+                        <a href="{{music.file.url}}" download class="actions__button _icon-download"></a>
+                        {% else %}
+                        <div class="actions__button disabled _icon-download"></div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="music-overview__license">
+                    <div class="music-overview__price">License price: {{music.price}}$</div>
+                    <form action="{% url 'form_buy' %}" method="GET">
+                        <input hidden value="{{music.pk}}" name="q" class="input">
+                        {% if button_blocked %}
+                        <div class="music-overview__button btn-disabled">
+                            Buy license
+                        </div>
+                        {% else %}
+                        <button class="music-overview__button btn-hover">
+                            Buy license
+                        </button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+            <div class="music-overview__controls overview-controls">
+                <div class="overview-controls__container">
+                    <div class="overview-controls__body">
+                        <div class="overview-controls__progress-block">
+                            <button class="overview-controls__play _icon-play"></button>
+                            <audio class="overview-audio" hidden>
+                                <source src="/clips/{{ music.id }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <div class="overview-controls__timer"><span class="overview-controls-minutes">00</span> : <span class="overview-controls-seconds">00</span></div>
+                            <div class="overview-controls__progress-container">
+                                <div class="overview-controls__progress"></div>
+                            </div>
+                            </div>
+                        <button class="overview-controls__loop _icon-loop"></button>
+                        <div class="overview-controls__volume overview-volume">
+                            <button class="overview-volume__icon _icon-volume"></button>
+                            <div class="overview-volume__progress-container">
+                                <div class="overview-volume__progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="music-overview__lyrics">
+                {{ music.music_lyrics|safe|linebreaks }}
+            </div>
+        </div>
+    </div>
+</main>
+<div class="cover"></div>
+<div class="modal">
+    <div class="modal__body">
+        <div class="modal__header">
+            <h2 class="modal__title">Add to playlist</h2>
+            <button class="modal__close"><img src="{% static 'Main_pages/images/close.png' %}" alt=""></button>
+        </div>
+        <form class="modal__select select">
+            {% for elem in playlists %}
+                <div class="select__group">
+                    <label for="{{ elem.playlist.pk }}">
+                        <input {{elem.checked}} type="checkbox" class="select__checkbox" id="{{ elem.playlist.pk }}" value="{{ elem.playlist.pk }}">
+                        <div class="select__fake-chekbox"></div>
+                    </label>
+                    <input autocomplete="off" type="text" placeholder="" value="{{ elem.playlist.name }}" class="select__input">
+                    <div value="{{ elem.playlist.pk }}" class="select__delete">Del</div>
+                </div>
+            {% endfor %}
+        </form>
+        <div class="modal__line">
+            <button id="buttonAdd" class="modal__button _icon-plus"></button>
+            <label for="buttonAdd" class="modal__new">New playlist</label>
+        </div>
+        <form class="modal__add-playlist add-playlist">
+            <input autocomplete="off" type="text" minlength="3" maxlength="12" placeholder="Title" class="add-playlist__input" name="new_playlist_name">
+            <button type="submit" class="add-playlist__button">Add</button>
+        </form>
+    </div>
+</div>
+{% include 'Main_pages/card.html' %}
+{% endblock %}

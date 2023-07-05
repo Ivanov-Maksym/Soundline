@@ -1,0 +1,131 @@
+.main {
+    background-image: url("../images/background.png");
+	height: 100%;
+	background: #E4E4E4;
+}
+
+.main__container {
+    max-width: 1200px;
+    padding: 30px 20px 120px 20px;
+    margin: 0 auto;
+}
+
+.main__text {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.main__title {
+    background: linear-gradient(293.41deg, #323232 -11.71%, #4D4D4D 92.87%);
+    border-radius: 5px;
+    width: 100%;
+    padding: 8px 10px;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 29px;
+    color: #FF9898;
+    margin: 0px 0px 20px 0px;
+}
+
+.main__body {
+    display: grid;
+    gap: 10px;
+}
+
+.main__music {}
+
+.music {
+    background: #626262;
+    border-radius: 3px;
+    color: #fff;
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.music__image img {
+    width: 100px;
+    height: 95px;
+    border-radius: 5px;
+}
+
+.music__info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1 1 100%;
+}
+
+.music__titles {}
+
+.music__title a {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 22px;
+    color: #fff;
+}
+
+.music__title {
+    margin: 0px 0px 10px 0px;
+}
+
+.music__author a {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+
+.music__favorite {
+    font-size: 25px;
+    color: #FF9898;
+}
+
+._icon-favorite {}
+
+.music__play {
+    background: #FFE5E5;
+    height: 45px;
+    flex: 0 0 45px;
+    border-radius: 50%;
+    color: #008000;
+    font-size: 22px;
+    display: flex;
+    justify-self: flex-end;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+._icon-play {}
+
+@media (max-width: 928px) {
+	.main__container {
+		padding: 30px 20px 220px 20px;
+	}
+}
+
+
+@media (max-width: 700px) {
+    .music__image img {
+        width: 50px;
+        height: 50px;
+    }
+    .music__title a{
+        font-weight: 200;
+        font-size: 15px;
+        line-height: 15px;
+    }
+    .music__author a{
+        font-weight: 200;
+        font-size: 14px;
+        line-height: 10px;
+    }
+    
+    .main__music {
+        gap: 6px;
+        padding: 10px 5px;
+    }
+
+}
